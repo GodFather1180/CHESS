@@ -1,0 +1,25 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build SFML",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "${workspaceFolder}/main.cpp",          // Source file
+                "-I", "C:/SFML/SFML-2.6.1/include",    // Include path for SFML headers
+                "-L", "C:/SFML/SFML-2.6.1/lib",        // Library path for SFML libraries
+                "-lsfml-graphics",                     // Link SFML Graphics library
+                "-lsfml-window",                       // Link SFML Window library
+                "-lsfml-system",                       // Link SFML System library
+                "-o", "${workspaceFolder}/SFMLGame.exe" // Output executable
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Build SFML project"
+        }
+    ]
+}
