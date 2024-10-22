@@ -1,14 +1,19 @@
 # Variables
 CXX = g++
-CXXFLAGS = -I C:/SFML/SFML-2.6.1/include -std=c++17
-LDFLAGS = -L C:/SFML/SFML-2.6.1/lib -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+CXXFLAGS = -I./src/include -std=c++17
+LDFLAGS = -L./src/lib -lsfml-graphics -lsfml-window -lsfml-system -lopengl32 -lgdi32
 TARGET = game
-SRC = main.cpp
 
-# Rule to build the target
-$(TARGET): $(SRC)
-	$(CXX) $(SRC) -o $(TARGET) $(CXXFLAGS) $(LDFLAGS)
+# Build target
+all: $(TARGET)
 
-# Rule to clean the build
+$(TARGET): main.cpp
+	$(CXX) $(CXXFLAGS) -o $(TARGET) main.cpp $(LDFLAGS)
+
+# Clean up by deleting the executable and object files
 clean:
-	del $(TARGET)
+	del $(TARGET).exe
+	del *.o
+
+# For convenience, clean and rebuild
+rebuild: clean all

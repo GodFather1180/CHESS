@@ -1,9 +1,11 @@
 #include <stdio.h>
-#include <SFML/Graphics.hpp>
 #include <iostream>
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
 #include <time.h>
 
+
 int main(){
-    std::cout << "Hello World" << std::endl;
+    std::cout<< "Hello SFML!!" << std::endl;
     return 0;
 }
