@@ -1,13 +1,13 @@
-# Variables 
-Css = g++
-CssFLAGS = -I C:/SFML/SFML-2.6.1/include -std=c++17
-LDFLAGS = -L C:/SFML/SFML-2.6.1/lib -lsfml-graphics -lsfml-window -lsfml-system
-TARGET = Game
+# Variables
+CXX = g++
+CXXFLAGS = -I C:/SFML/SFML-2.6.1/include -std=c++17
+LDFLAGS = -L C:/SFML/SFML-2.6.1/lib -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+TARGET = game
 SRC = main.cpp
 
 # Rule to build the target
 $(TARGET): $(SRC)
-	$(Css) $(SRC) -o $(TARGET) $(CssFLAGS) $(LDFLAGS)
+	$(CXX) $(SRC) -o $(TARGET) $(CXXFLAGS) $(LDFLAGS)
 
 # Rule to clean the build
 clean:
