@@ -3,8 +3,10 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <time.h>
-using namespace sf;
 #include "board.h"
+
+
+using namespace sf;
 
 int main(){
     std::cout<< "Chess begins0!" << std::endl;
