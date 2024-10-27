@@ -26,7 +26,7 @@ int main(){
     std::cout<< "Chess begins0!" << std::endl;
     int Cboard = 8;
     int Csize = 100;
-    sf::RenderWindow window(sf::VideoMode(Cboard*Csize,Cboard*Csize), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(Cboard*Csize,Cboard*Csize), "Chess Begins!");
 
     while (window.isOpen())
     {
