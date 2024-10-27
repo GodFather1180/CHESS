@@ -1,6 +1,6 @@
 // Chessboard.h
-#ifndef CHESSBOARD_H
-#define CHESSBOARD_H
+#ifndef board_H
+#define board_H
 
 #include <SFML/Graphics.hpp>
 
