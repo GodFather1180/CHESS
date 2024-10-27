@@ -15,3 +15,13 @@ void Draw_chessboard(RenderWindow& window, int board, int size) {
         }
     }
 }
+
+
+void set_positon(){
+    int k =0;
+    for(int k=0;k<8;k++){
+        for(int j = 0; j < 8 ; j++){
+            
+        }
+    }
+}

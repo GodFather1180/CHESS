@@ -8,6 +8,7 @@
 using namespace sf;
 
 void Draw_chessboard(RenderWindow& window, int board, int size);
+void set_postition();
 
 class Board {
 public:
