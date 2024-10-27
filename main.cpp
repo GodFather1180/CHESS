@@ -4,23 +4,7 @@
 #include <SFML/Window.hpp>
 #include <time.h>
 using namespace sf;
-
-void Draw_chessboard(RenderWindow& window,int board,int size){
-    RectangleShape();
-    Color Whitecol(255,255,255);
-    Color Blackcol(0,0,0);
-    
-    for (int row =0; row<board;row++){
-        for (int col=0; col<board;col++){
-            RectangleShape square(Vector2f(size,size));
-            square.setPosition(col*size,row*size);
-            square.setFillColor(( row + col) %2 == 0 ? Whitecol : Blackcol);
-            window.draw(square);
-        }
-    } 
-    
-
-}
+#include "board.h"
 
 int main(){
     std::cout<< "Chess begins0!" << std::endl;
