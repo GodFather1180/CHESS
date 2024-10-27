@@ -5,12 +5,10 @@
 #include <time.h>
 
 
-void Draw_chessboard(sf::RenderWindow& window){
+void Draw_chessboard(sf::RenderWindow& window,int board,int size){
     sf::RectangleShape();
     sf::Color Whitecol(255,255,255);
     sf::Color Blackcol(0,0,0);
-    int size= 100;
-    int board = 8;
     
     for (int row =0; row<board;row++){
         for (int col=0; col<board;col++){
@@ -40,7 +38,7 @@ int main(){
         }
 
         window.clear();
-        Draw_chessboard(window);
+        Draw_chessboard(window,Cboard,Csize);
         window.display();
     }
 
