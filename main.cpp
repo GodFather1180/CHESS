@@ -9,7 +9,7 @@
 using namespace sf;
 
 int main(){
-    std::cout<< "Chess begins0!" << std::endl;
+    std::cout<< "Chess begins!" << std::endl;
     int Cboard = 8;
     int Csize = 100;
     RenderWindow window(VideoMode(Cboard*Csize,Cboard*Csize), "Chess Begins!");
