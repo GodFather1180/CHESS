@@ -8,7 +8,7 @@ TARGET = game
 all: $(TARGET)
 
 $(TARGET): main.cpp
-	$(CXX) $(CXXFLAGS) -o $(TARGET) main.cpp $(LDFLAGS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) gpt.cpp $(LDFLAGS)
 
 # Clean up by deleting the executable and object files
 clean:

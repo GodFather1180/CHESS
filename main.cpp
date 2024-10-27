@@ -5,11 +5,30 @@
 #include <time.h>
 
 
-int main(){
-    std::cout<< "Hello SFML!!" << std::endl;
+void Draw_chessboard(sf::RenderWindow& window){
+    sf::RectangleShape();
+    sf::Color Whitecol(255,255,255);
+    sf::Color Blackcol(0,0,0);
+    int size= 100;
+    int board = 8;
+    
+    for (int row =0; row<board;row++){
+        for (int col=0; col<board;col++){
+            sf::RectangleShape square(sf::Vector2f(size,size));
+            square.setPosition(col*size,row*size);
+            square.setFillColor(( row + col) %2 == 0 ? Whitecol : Blackcol);
+            window.draw(square);
+        }
+    } 
+    
 
-    // create the window
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Board");
+}
+
+int main(){
+    std::cout<< "Chess begins0!" << std::endl;
+    int Cboard = 8;
+    int Csize = 100;
+    sf::RenderWindow window(sf::VideoMode(Cboard*Csize,Cboard*Csize), "SFML works!");
 
     while (window.isOpen())
     {
@@ -21,6 +40,7 @@ int main(){
         }
 
         window.clear();
+        Draw_chessboard(window);
         window.display();
     }
 
