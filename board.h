@@ -3,6 +3,7 @@
 #define board_H
 
 #include <SFML/Graphics.hpp>
+#include "Piece.h"
 
 using namespace sf;
 
@@ -15,14 +16,18 @@ public:
 
     // The chess board array representing the layout
     int board[8][8] = {
-        2, 3, 4, 5, 6, 4, 3, 2,
-        1, 1, 1, 1, 1, 1, 1, 1,
-        0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 
-        0, 0, 0, 0, 0, 0, 0, 0,
-        0,0, 0, 0, 0, 0, 0, 0,
-        -1,-1, -1, -1, -1, -1, -1, -1,
-        -2, -3, -4, -5, -6, -4, -3, -1
+        {Piece::Rook | Piece::Black, Piece::Knight | Piece::Black, Piece::Bishop | Piece::Black, Piece::Queen | Piece::Black,
+        Piece::King | Piece::Black, Piece::Bishop | Piece::Black, Piece::Knight | Piece::Black, Piece::Rook | Piece::Black},
+        {Piece::Pawn | Piece::Black, Piece::Pawn | Piece::Black, Piece::Pawn | Piece::Black, Piece::Pawn | Piece::Black,
+        Piece::Pawn | Piece::Black, Piece::Pawn | Piece::Black, Piece::Pawn | Piece::Black, Piece::Pawn | Piece::Black},
+        {Piece::None, Piece::None, Piece::None, Piece::None, Piece::None, Piece::None, Piece::None, Piece::None},
+        {Piece::None, Piece::None, Piece::None, Piece::None, Piece::None, Piece::None, Piece::None, Piece::None},
+        {Piece::None, Piece::None, Piece::None, Piece::None, Piece::None, Piece::None, Piece::None, Piece::None},
+        {Piece::None, Piece::None, Piece::None, Piece::None, Piece::None, Piece::None, Piece::None, Piece::None},
+        {Piece::Pawn | Piece::White, Piece::Pawn | Piece::White, Piece::Pawn | Piece::White, Piece::Pawn | Piece::White,
+        Piece::Pawn | Piece::White, Piece::Pawn | Piece::White, Piece::Pawn | Piece::White, Piece::Pawn | Piece::White},
+        {Piece::Rook | Piece::White, Piece::Knight | Piece::White, Piece::Bishop | Piece::White, Piece::Queen | Piece::White,
+        Piece::King | Piece::White, Piece::Bishop | Piece::White, Piece::Knight | Piece::White, Piece::Rook | Piece::White}
     };
 };
 
