@@ -6,6 +6,7 @@ Board::Board() {
 }
 
 void Board::Draw_chessboard(sf::RenderWindow& window, int size) {
+    //Color for the square
     sf::Color Whitecol(255, 255, 255);
     sf::Color Blackcol(50, 50, 50);
 
@@ -13,6 +14,7 @@ void Board::Draw_chessboard(sf::RenderWindow& window, int size) {
         for (int col = 0; col < 8; col++) {
             sf::RectangleShape square(sf::Vector2f(size, size));
             square.setPosition(col * size, row * size);
+            //fill the color of the square based on its position
             square.setFillColor((row + col) % 2 == 0 ? Whitecol : Blackcol);
             window.draw(square);
 
@@ -26,3 +28,4 @@ void Board::Draw_chessboard(sf::RenderWindow& window, int size) {
         }
     }
 }
+

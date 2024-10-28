@@ -5,14 +5,14 @@
 #include <time.h>
 #include "board.h"
 
-
+//using namespace instead of sf::
 using namespace sf;
 
 int main(){
     std::cout<< "Chess begins!" << std::endl;
     int Cboard = 8;
     int Csize = 100;
-
+    //iniialize board
     Board Chessboard;
     RenderWindow window(VideoMode(8*Csize,8*Csize), "Chess Begins!");
         Piece::loadTextures();  // Load textures for all pieces

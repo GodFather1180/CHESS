@@ -6,6 +6,7 @@
 
 class Piece {
 public:
+    //interger value given to the pieces
     static const int None = 0;
     static const int King = 1;
     static const int Pawn = 2;
@@ -13,7 +14,7 @@ public:
     static const int Bishop = 4;
     static const int Rook = 5;
     static const int Queen = 6;
-
+    // colors sorted by their bit size
     static const int White = 8;
     static const int Black = 16;
 

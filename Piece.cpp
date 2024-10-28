@@ -16,7 +16,7 @@ sf::Texture Piece::BH;
 sf::Texture Piece::BP;
 
 void Piece::loadTextures() {
-    // Load white piece textures
+    // Load white  textures
     WK.loadFromFile("pieces/white-king.png");
     WQ.loadFromFile("pieces/white-queen.png");
     WR.loadFromFile("pieces/white-rook.png");
@@ -24,7 +24,7 @@ void Piece::loadTextures() {
     WH.loadFromFile("pieces/white-knight.png");
     WP.loadFromFile("pieces/white-pawn.png");
 
-    // Load black piece textures
+    // Load black  textures
     BK.loadFromFile("pieces/black-king.png");
     BQ.loadFromFile("pieces/black-queen.png");
     BR.loadFromFile("pieces/black-rook.png");
@@ -36,7 +36,7 @@ void Piece::loadTextures() {
 void Piece::drawPiece(sf::RenderWindow& window, int pieceType, int color, float x, float y, float size) {
     sf::Sprite sprite;
 
-    // Select the appropriate texture based on the piece type and color
+    // Select the texture based on the piece type and color
     if (color == White) {
         switch (pieceType) {
             case King: sprite.setTexture(WK); break;
