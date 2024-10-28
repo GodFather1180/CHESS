@@ -1,27 +1,28 @@
-// Chessboard.cpp
 #include "board.h"
+#include "Piece.h"
 
-void Draw_chessboard(RenderWindow& window, int board, int size) {
-    Color Whitecol(255, 255, 255);
-    Color Blackcol(0, 0, 0);
-    //loop to create squares
-    for (int row = 0; row < board; row++) {
-        for (int col = 0; col < board; col++) {
-            RectangleShape square(Vector2f(size, size));
-            square.setPosition(col * size, row * size);
-            //checks for even and give the color
-            square.setFillColor((row + col) % 2 == 0 ? Whitecol : Blackcol);
-            window.draw(square);
-        }
-    }
+Board::Board() {
+    // This can be empty, or you can initialize anything if needed
 }
 
+void Board::Draw_chessboard(sf::RenderWindow& window, int size) {
+    sf::Color Whitecol(255, 255, 255);
+    sf::Color Blackcol(50, 50, 50);
 
-void set_positon(){
-    int k =0;
-    for(int k=0;k<8;k++){
-        for(int j = 0; j < 8 ; j++){
-            
+    for (int row = 0; row < 8; row++) {
+        for (int col = 0; col < 8; col++) {
+            sf::RectangleShape square(sf::Vector2f(size, size));
+            square.setPosition(col * size, row * size);
+            square.setFillColor((row + col) % 2 == 0 ? Whitecol : Blackcol);
+            window.draw(square);
+
+            int piece = board[row][col];
+            int pieceType = piece & 0x7;  // Extract type
+            int color = piece & 0x18;     // Extract color
+
+            if (pieceType != Piece::None) {
+                Piece::drawPiece(window, pieceType, color, col * size, row * size, size);
+            }
         }
     }
 }

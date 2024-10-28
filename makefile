@@ -7,8 +7,8 @@ TARGET = game
 # Build target
 all: $(TARGET)
 
-$(TARGET): main.cpp board.cpp
-	$(CXX) $(CXXFLAGS) -o $(TARGET) main.cpp board.cpp $(LDFLAGS)
+$(TARGET): main.cpp board.cpp Piece.cpp 
+	$(CXX) $(CXXFLAGS) -o $(TARGET) main.cpp board.cpp Piece.cpp $(LDFLAGS)
 
 # Clean up by deleting the executable and object files
 clean:

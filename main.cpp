@@ -12,7 +12,10 @@ int main(){
     std::cout<< "Chess begins!" << std::endl;
     int Cboard = 8;
     int Csize = 100;
-    RenderWindow window(VideoMode(Cboard*Csize,Cboard*Csize), "Chess Begins!");
+
+    Board Chessboard;
+    RenderWindow window(VideoMode(8*Csize,8*Csize), "Chess Begins!");
+        Piece::loadTextures();  // Load textures for all pieces
 
     while (window.isOpen())
     {
@@ -24,7 +27,7 @@ int main(){
         }
 
         window.clear();
-        Draw_chessboard(window,Cboard,Csize);
+        Chessboard.Draw_chessboard(window,Csize);
         window.display();
     }
 

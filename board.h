@@ -1,19 +1,13 @@
-// Chessboard.h
-#ifndef board_H
-#define board_H
+// board.h
+#ifndef BOARD_H
+#define BOARD_H
 
 #include <SFML/Graphics.hpp>
 #include "Piece.h"
 
-using namespace sf;
-
-void Draw_chessboard(RenderWindow& window, int board, int size);
-void set_postition();
-
 class Board {
 public:
-    // Constructor to initialize the board
-    Board();
+    Board();  // Constructor
 
     // The chess board array representing the layout
     int board[8][8] = {
@@ -30,8 +24,8 @@ public:
         {Piece::Rook | Piece::White, Piece::Knight | Piece::White, Piece::Bishop | Piece::White, Piece::Queen | Piece::White,
         Piece::King | Piece::White, Piece::Bishop | Piece::White, Piece::Knight | Piece::White, Piece::Rook | Piece::White}
     };
+
+    void Draw_chessboard(sf::RenderWindow& window, int size);
 };
 
-
-
-#endif // CHESSBOARD_H
+#endif // BOARD_H
