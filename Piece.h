@@ -22,6 +22,7 @@ public:
     static sf::Texture BK, BQ, BR, BB, BH,BP;
 
     static void loadTextures();
+    static void IsMoveLegal();
     static void drawPiece(sf::RenderWindow& window, int pieceType, int color, float x, float y, float size);
 };
 

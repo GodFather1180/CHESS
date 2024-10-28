@@ -71,3 +71,29 @@ void Piece::drawPiece(sf::RenderWindow& window, int pieceType, int color, float 
     // Draw the piece sprite on the window
     window.draw(sprite);
 }
+
+
+
+void IsMoveLegal(){
+    
+}
+
+
+bool isMoveLegalR(){
+
+}
+bool isMoveLegalK(){
+    
+}
+bool isMoveLegalQ(){
+    
+}
+bool isMoveLegalB(){
+    
+}
+bool isMoveLegalH(){
+    
+}
+bool isMoveLegalP(){
+    
+}
