@@ -16,7 +16,7 @@ sf::Texture Piece::BH;
 sf::Texture Piece::BP;
 
 void Piece::loadTextures() {
-    // Load white  textures
+    // Load white  pieces (texture)
     WK.loadFromFile("pieces/white-king.png");
     WQ.loadFromFile("pieces/white-queen.png");
     WR.loadFromFile("pieces/white-rook.png");
@@ -24,7 +24,7 @@ void Piece::loadTextures() {
     WH.loadFromFile("pieces/white-knight.png");
     WP.loadFromFile("pieces/white-pawn.png");
 
-    // Load black  textures
+    // Load black  pieces (textures)
     BK.loadFromFile("pieces/black-king.png");
     BQ.loadFromFile("pieces/black-queen.png");
     BR.loadFromFile("pieces/black-rook.png");
@@ -70,30 +70,4 @@ void Piece::drawPiece(sf::RenderWindow& window, int pieceType, int color, float 
 
     // Draw the piece sprite on the window
     window.draw(sprite);
-}
-
-
-
-void IsMoveLegal(){
-    
-}
-
-
-bool isMoveLegalR(){
-
-}
-bool isMoveLegalK(){
-    
-}
-bool isMoveLegalQ(){
-    
-}
-bool isMoveLegalB(){
-    
-}
-bool isMoveLegalH(){
-    
-}
-bool isMoveLegalP(){
-    
 }
