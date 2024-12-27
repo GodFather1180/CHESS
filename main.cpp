@@ -16,6 +16,7 @@ int main() {
 
     bool isMove = false;
     Vector2i selectedPos(-1, -1);
+    bool isWhiteTurn = true; // White starts first
 
     while (window.isOpen()) {
         Vector2i mousePos = Mouse::getPosition(window);
@@ -30,8 +31,16 @@ int main() {
                 int row = mousePos.y / Csize;
 
                 if (!isMove && Chessboard.board[row][col] != Piece::None) {
-                    selectedPos = Vector2i(row, col);
-                    isMove = true;
+                    int piece = Chessboard.board[row][col];
+                    int pieceColor = piece & 0x18;
+
+                    // Ensure the correct player's turn
+                    if ((isWhiteTurn && pieceColor == Piece::White) || (!isWhiteTurn && pieceColor == Piece::Black)) {
+                        selectedPos = Vector2i(row, col);
+                        isMove = true;
+                    } else {
+                        std::cout << "It's not your turn!" << std::endl;
+                    }
                 } else if (isMove) {
                     int startRow = selectedPos.x;
                     int startCol = selectedPos.y;
@@ -39,12 +48,18 @@ int main() {
                     int endCol = col;
 
                     int piece = Chessboard.board[startRow][startCol];
+                    int pieceType = piece & 0x7;
+                    int pieceColor = piece & 0x18;
 
-                    // Validate move logic
-                    if (true) { // Simplified for now
+                    // Call isMoveLegal to validate the move
+                    if (Piece::isMoveLegal(pieceType, pieceColor, startRow, startCol, endRow, endCol, Chessboard.board)) {
+                        // Update the board if the move is valid
                         Chessboard.board[endRow][endCol] = piece;
                         Chessboard.board[startRow][startCol] = Piece::None;
                         std::cout << "Move made from (" << startRow << ", " << startCol << ") to (" << endRow << ", " << endCol << ")" << std::endl;
+
+                        // Switch turns
+                        isWhiteTurn = !isWhiteTurn;
                     } else {
                         std::cout << "Invalid move" << std::endl;
                     }

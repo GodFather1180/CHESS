@@ -5,7 +5,6 @@
 
 class Piece {
 public:
-    // Integer values for piece types
     static const int None = 0;
     static const int KingType = 1;
     static const int PawnType = 2;
@@ -14,7 +13,6 @@ public:
     static const int RookType = 5;
     static const int QueenType = 6;
 
-    // Colors sorted by their bit size
     static const int White = 8;
     static const int Black = 16;
 
@@ -22,14 +20,8 @@ public:
     static sf::Texture BK, BQ, BR, BB, BH, BP;
 
     static void loadTextures();
-    static void isMoveLegal();  // Changed method names to avoid conflict
-    static void king();
-    static void queen();
-    static void bishop();
-    static void rook();
-    static void knight();
-    static void pawn();
     static void drawPiece(sf::RenderWindow& window, int pieceType, int color, float x, float y, float size);
+    static bool isMoveLegal(int pieceType, int color, int startRow, int startCol, int endRow, int endCol, int board[8][8]);
 };
 
 #endif // PIECE_H
