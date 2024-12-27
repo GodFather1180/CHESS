@@ -1,52 +1,61 @@
-#include <stdio.h>
-#include <iostream>
 #include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
-#include <time.h>
+#include <iostream>
 #include "board.h"
+#include "Piece.h"
 
-//using namespace instead of sf::
 using namespace sf;
 
-int main(){
-    std::cout<< "Chess begins!" << std::endl;
+int main() {
+    std::cout << "Chess begins!" << std::endl;
     int Cboard = 8;
     int Csize = 100;
-    //iniialize board
+
     Board Chessboard;
-    RenderWindow window(VideoMode(8*Csize,8*Csize), "Chess Begins!");
-        Piece::loadTextures();  // Load textures for all pieces
+    RenderWindow window(VideoMode(Cboard * Csize, Cboard * Csize), "Chess Begins!");
+    Piece::loadTextures();
 
-    Sprite sprite;
+    bool isMove = false;
+    Vector2i selectedPos(-1, -1);
 
-    bool ismove = false;
-    float dx =0, dy = 0;
-    while (window.isOpen())
-    {
-        Vector2i pos = Mouse:: getPosition(window);
+    while (window.isOpen()) {
+        Vector2i mousePos = Mouse::getPosition(window);
         Event event;
-        while (window.pollEvent(event))
-        {
+
+        while (window.pollEvent(event)) {
             if (event.type == Event::Closed)
                 window.close();
-                //FIX drag and drop pieces
-            if(event.type == Event::MouseButtonPressed)
-                if(event.key.code == Mouse::Left){
-                if(sprite.getGlobalBounds().contains(pos.x, pos.y))
-                {
-                    ismove = true;
-                    dx = pos.x - sprite.getPosition().x;
-                    dy = pos.y -  sprite.getPosition().y;
+
+            if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Left) {
+                int col = mousePos.x / Csize;
+                int row = mousePos.y / Csize;
+
+                if (!isMove && Chessboard.board[row][col] != Piece::None) {
+                    selectedPos = Vector2i(row, col);
+                    isMove = true;
+                } else if (isMove) {
+                    int startRow = selectedPos.x;
+                    int startCol = selectedPos.y;
+                    int endRow = row;
+                    int endCol = col;
+
+                    int piece = Chessboard.board[startRow][startCol];
+
+                    // Validate move logic
+                    if (true) { // Simplified for now
+                        Chessboard.board[endRow][endCol] = piece;
+                        Chessboard.board[startRow][startCol] = Piece::None;
+                        std::cout << "Move made from (" << startRow << ", " << startCol << ") to (" << endRow << ", " << endCol << ")" << std::endl;
+                    } else {
+                        std::cout << "Invalid move" << std::endl;
+                    }
+
+                    isMove = false;
                 }
             }
-            if(event.type == Event::MouseButtonReleased)
-                if(event.key.code == Mouse::Left)
-                ismove = false;
         }
 
-        if (ismove) sprite.setPosition(pos.x - dx, pos.y - dy);
         window.clear();
-        Chessboard.Draw_chessboard(window,Csize);
+        Chessboard.Draw_chessboard(window, Csize);
         window.display();
     }
 

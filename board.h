@@ -1,4 +1,3 @@
-// board.h
 #ifndef BOARD_H
 #define BOARD_H
 
@@ -7,22 +6,21 @@
 
 class Board {
 public:
-    Board();  // Constructor
+    Board();
 
-    // The chess board array representing the layout
     int board[8][8] = {
-        {Piece::Rook | Piece::Black, Piece::Knight | Piece::Black, Piece::Bishop | Piece::Black, Piece::Queen | Piece::Black,
-        Piece::King | Piece::Black, Piece::Bishop | Piece::Black, Piece::Knight | Piece::Black, Piece::Rook | Piece::Black},
-        {Piece::Pawn | Piece::Black, Piece::Pawn | Piece::Black, Piece::Pawn | Piece::Black, Piece::Pawn | Piece::Black,
-        Piece::Pawn | Piece::Black, Piece::Pawn | Piece::Black, Piece::Pawn | Piece::Black, Piece::Pawn | Piece::Black},
+        {Piece::RookType | Piece::Black, Piece::KnightType | Piece::Black, Piece::BishopType | Piece::Black, Piece::QueenType | Piece::Black,
+         Piece::KingType | Piece::Black, Piece::BishopType | Piece::Black, Piece::KnightType | Piece::Black, Piece::RookType | Piece::Black},
+        {Piece::PawnType | Piece::Black, Piece::PawnType | Piece::Black, Piece::PawnType | Piece::Black, Piece::PawnType | Piece::Black,
+         Piece::PawnType | Piece::Black, Piece::PawnType | Piece::Black, Piece::PawnType | Piece::Black, Piece::PawnType | Piece::Black},
         {Piece::None, Piece::None, Piece::None, Piece::None, Piece::None, Piece::None, Piece::None, Piece::None},
         {Piece::None, Piece::None, Piece::None, Piece::None, Piece::None, Piece::None, Piece::None, Piece::None},
         {Piece::None, Piece::None, Piece::None, Piece::None, Piece::None, Piece::None, Piece::None, Piece::None},
         {Piece::None, Piece::None, Piece::None, Piece::None, Piece::None, Piece::None, Piece::None, Piece::None},
-        {Piece::Pawn | Piece::White, Piece::Pawn | Piece::White, Piece::Pawn | Piece::White, Piece::Pawn | Piece::White,
-        Piece::Pawn | Piece::White, Piece::Pawn | Piece::White, Piece::Pawn | Piece::White, Piece::Pawn | Piece::White},
-        {Piece::Rook | Piece::White, Piece::Knight | Piece::White, Piece::Bishop | Piece::White, Piece::Queen | Piece::White,
-        Piece::King | Piece::White, Piece::Bishop | Piece::White, Piece::Knight | Piece::White, Piece::Rook | Piece::White}
+        {Piece::PawnType | Piece::White, Piece::PawnType | Piece::White, Piece::PawnType | Piece::White, Piece::PawnType | Piece::White,
+         Piece::PawnType | Piece::White, Piece::PawnType | Piece::White, Piece::PawnType | Piece::White, Piece::PawnType | Piece::White},
+        {Piece::RookType | Piece::White, Piece::KnightType | Piece::White, Piece::BishopType | Piece::White, Piece::QueenType | Piece::White,
+         Piece::KingType | Piece::White, Piece::BishopType | Piece::White, Piece::KnightType | Piece::White, Piece::RookType | Piece::White}
     };
 
     void Draw_chessboard(sf::RenderWindow& window, int size);

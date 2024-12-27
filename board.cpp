@@ -8,7 +8,7 @@ Board::Board() {
 void Board::Draw_chessboard(sf::RenderWindow& window, int size) {
     //Color for the square
     sf::Color Whitecol(255, 255, 255);
-    sf::Color Blackcol(50, 50, 50);
+    sf::Color Blackcol(255, 192, 203); // forced by anini
 
     for (int row = 0; row < 8; row++) {
         for (int col = 0; col < 8; col++) {
