@@ -7,6 +7,10 @@
 class Board {
 public:
     Board();
+    struct Move {
+    int startRow, startCol, endRow, endCol;
+};
+
 
     int board[8][8] = {
         {Piece::RookType | Piece::Black, Piece::KnightType | Piece::Black, Piece::BishopType | Piece::Black, Piece::QueenType | Piece::Black,

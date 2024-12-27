@@ -2,6 +2,7 @@
 #include <iostream>
 #include "board.h"
 #include "Piece.h"
+#include "move.h"
 
 using namespace sf;
 
@@ -17,6 +18,7 @@ int main() {
     bool isMove = false;
     Vector2i selectedPos(-1, -1);
     bool isWhiteTurn = true; // White starts first
+    Move lastMove = {-1, -1, -1, -1}; // Initialize last move
 
     while (window.isOpen()) {
         Vector2i mousePos = Mouse::getPosition(window);
@@ -52,11 +54,33 @@ int main() {
                     int pieceColor = piece & 0x18;
 
                     // Call isMoveLegal to validate the move
-                    if (Piece::isMoveLegal(pieceType, pieceColor, startRow, startCol, endRow, endCol, Chessboard.board)) {
-                        // Update the board if the move is valid
-                        Chessboard.board[endRow][endCol] = piece;
+                    if (Piece::isMoveLegal(pieceType, pieceColor, startRow, startCol, endRow, endCol, Chessboard.board, lastMove)) {
+                        // Handle castling
+                        if (pieceType == Piece::KingType && std::abs(endCol - startCol) == 2) {
+                            if (endCol == 6) { // King-side castling
+                                Chessboard.board[startRow][5] = Chessboard.board[startRow][7]; // Move rook
+                                Chessboard.board[startRow][7] = Piece::None; // Clear old rook position
+                            } else if (endCol == 2) { // Queen-side castling
+                                Chessboard.board[startRow][3] = Chessboard.board[startRow][0]; // Move rook
+                                Chessboard.board[startRow][0] = Piece::None; // Clear old rook position
+                            }
+                        }
+
+                        // Handle en passant
+                        if (pieceType == Piece::PawnType && Chessboard.board[endRow][endCol] == Piece::None && std::abs(endCol - startCol) == 1) {
+                            if (pieceColor == Piece::White) {
+                                Chessboard.board[endRow + 1][endCol] = Piece::None; // Remove captured black pawn
+                            } else {
+                                Chessboard.board[endRow - 1][endCol] = Piece::None; // Remove captured white pawn
+                            }
+                        }
+
+                        // Update the board for the current move
+                        Chessboard.board[endRow][endCol] = Chessboard.board[startRow][startCol];
                         Chessboard.board[startRow][startCol] = Piece::None;
-                        std::cout << "Move made from (" << startRow << ", " << startCol << ") to (" << endRow << ", " << endCol << ")" << std::endl;
+
+                        // Update last move
+                        lastMove = {startRow, startCol, endRow, endCol};
 
                         // Switch turns
                         isWhiteTurn = !isWhiteTurn;

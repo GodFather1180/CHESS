@@ -1,4 +1,5 @@
 #include "Piece.h"
+#include "move.h"
 #include <SFML/Graphics.hpp>
 #include <cmath>
 
@@ -77,7 +78,7 @@ void Piece::drawPiece(sf::RenderWindow& window, int pieceType, int color, float 
     window.draw(sprite);
 }
 
-bool Piece::isMoveLegal(int pieceType, int color, int startRow, int startCol, int endRow, int endCol, int board[8][8]) {
+bool Piece::isMoveLegal(int pieceType, int color, int startRow, int startCol, int endRow, int endCol, int board[8][8], const Move& lastMove) {
     int targetPiece = board[endRow][endCol];
     int targetColor = targetPiece & 0x18;
 
@@ -89,13 +90,25 @@ bool Piece::isMoveLegal(int pieceType, int color, int startRow, int startCol, in
     switch (pieceType) {
         case PawnType:
             if (color == White) {
-                if (dRow == -1 && dCol == 0 && targetPiece == None) return true; // Forward move
-                if (dRow == -1 && std::abs(dCol) == 1 && targetPiece != None) return true; // Capture
-                if (startRow == 6 && dRow == -2 && dCol == 0 && board[startRow - 1][startCol] == None && targetPiece == None) return true; // Double move
-            } else {
-                if (dRow == 1 && dCol == 0 && targetPiece == None) return true; // Forward move
-                if (dRow == 1 && std::abs(dCol) == 1 && targetPiece != None) return true; // Capture
-                if (startRow == 1 && dRow == 2 && dCol == 0 && board[startRow + 1][startCol] == None && targetPiece == None) return true; // Double move
+                if (dRow == -1 && dCol == 0 && targetPiece == None) return true;
+                if (dRow == -1 && std::abs(dCol) == 1 && targetPiece != None) return true;
+                if (startRow == 6 && dRow == -2 && dCol == 0 && board[startRow - 1][startCol] == None && targetPiece == None) return true;
+                // En passant
+                if (dRow == -1 && std::abs(dCol) == 1 && targetPiece == None &&
+                    lastMove.endRow == startRow && lastMove.endCol == endCol &&
+                    board[lastMove.endRow][lastMove.endCol] == (PawnType | Black)) {
+                    return true;
+                }
+            } else { // Black pawn
+                if (dRow == 1 && dCol == 0 && targetPiece == None) return true;
+                if (dRow == 1 && std::abs(dCol) == 1 && targetPiece != None) return true;
+                if (startRow == 1 && dRow == 2 && dCol == 0 && board[startRow + 1][startCol] == None && targetPiece == None) return true;
+                // En passant
+                if (dRow == 1 && std::abs(dCol) == 1 && targetPiece == None &&
+                    lastMove.endRow == startRow && lastMove.endCol == endCol &&
+                    board[lastMove.endRow][lastMove.endCol] == (PawnType | White)) {
+                    return true;
+                }
             }
             break;
         case RookType:
@@ -126,7 +139,21 @@ bool Piece::isMoveLegal(int pieceType, int color, int startRow, int startCol, in
             }
             break;
         case KingType:
-            if (std::abs(dRow) <= 1 && std::abs(dCol) <= 1) return true;
+            if (std::abs(dRow) <= 1 && std::abs(dCol) <= 1) return true; // Single-step move
+            // Castling
+            if (std::abs(dCol) == 2 && dRow == 0) {
+                if (color == White && startRow == 7) {
+                    if ((endCol == 6 && board[startRow][5] == None && board[startRow][6] == None) ||
+                        (endCol == 2 && board[startRow][3] == None && board[startRow][2] == None && board[startRow][1] == None)) {
+                        return true;
+                    }
+                } else if (color == Black && startRow == 0) {
+                    if ((endCol == 6 && board[startRow][5] == None && board[startRow][6] == None) ||
+                        (endCol == 2 && board[startRow][3] == None && board[startRow][2] == None && board[startRow][1] == None)) {
+                        return true;
+                    }
+                }
+            }
             break;
     }
 

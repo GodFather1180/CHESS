@@ -2,6 +2,7 @@
 #define PIECE_H
 
 #include <SFML/Graphics.hpp>
+#include "move.h"
 
 class Piece {
 public:
@@ -21,7 +22,7 @@ public:
 
     static void loadTextures();
     static void drawPiece(sf::RenderWindow& window, int pieceType, int color, float x, float y, float size);
-    static bool isMoveLegal(int pieceType, int color, int startRow, int startCol, int endRow, int endCol, int board[8][8]);
+    static bool isMoveLegal(int pieceType, int color, int startRow, int startCol, int endRow, int endCol, int board[8][8], const Move& lastMove);
 };
 
 #endif // PIECE_H
